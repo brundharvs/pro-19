@@ -1,19 +1,11 @@
-
 #!/bin/bash
 
-echo "===== SYSTEM STATUS ====="
+echo"Enter log file name:"
+read logfile
 
-echo "CPU Load:"
-uptime
-
-echo "Memory Usage:"
-free -h
-
-echo "Disk Usage:"
-df -h
-
-echo "Network Status:"
-ip a | grep inet
-
-echo "Top Processes:"
-ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+if [ -f "logfile" ]; then
+ errors=$(grep -i"error"&quot;"$logfile"; | wc -l)
+ echo "Total errors: $errors"
+else
+ echo "File not found"
+fi
